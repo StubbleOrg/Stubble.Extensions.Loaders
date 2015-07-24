@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Stubble.Core.Interfaces;
 
 namespace Stubble.Extensions.Loaders
@@ -13,7 +9,7 @@ namespace Stubble.Extensions.Loaders
         internal const string DefaultFileType = "mustache";
         private readonly string _path;
         private readonly string _extension;
-        internal IDictionary<string, string> TemplateCache = new Dictionary<string, string>(10); 
+        internal ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
         public FileSystemLoader(string path) : this(path, DefaultFileType)
         {
@@ -33,7 +29,7 @@ namespace Stubble.Extensions.Loaders
             if (!File.Exists(fileName)) return null;
 
             var contents = File.ReadAllText(fileName);
-            TemplateCache.Add(name, contents);
+            TemplateCache.AddOrUpdate(name, contents, (s, s1) => contents);
             return contents;
         }
     }

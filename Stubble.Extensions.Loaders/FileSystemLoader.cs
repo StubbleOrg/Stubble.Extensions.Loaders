@@ -7,8 +7,8 @@ namespace Stubble.Extensions.Loaders
     public class FileSystemLoader : IStubbleLoader
     {
         internal const string DefaultFileType = "mustache";
-        private readonly string _path;
-        private readonly string _extension;
+        internal readonly string Path;
+        internal readonly string Extension;
         internal ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
         public FileSystemLoader(string path) : this(path, DefaultFileType)
@@ -17,15 +17,15 @@ namespace Stubble.Extensions.Loaders
 
         public FileSystemLoader(string path, string extension)
         {
-            _path = path.TrimEnd('/');
-            _extension = extension;
+            Path = path.TrimEnd('/');
+            Extension = extension;
         }
 
         public string Load(string name)
         {
             if (TemplateCache.ContainsKey(name)) return TemplateCache[name];
 
-            var fileName = _path + "/name." + _extension;
+            var fileName = Path + "/name." + Extension;
             if (!File.Exists(fileName)) return null;
 
             var contents = File.ReadAllText(fileName);

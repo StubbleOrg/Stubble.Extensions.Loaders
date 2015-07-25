@@ -29,7 +29,7 @@ namespace Stubble.Extensions.Loaders
 
         public string Load(string name)
         {
-            var resourceName = _assembly.GetManifestResourceNames().FirstOrDefault(rn => rn.Contains(name + "." + Extension));
+            var resourceName = _assembly.GetManifestResourceNames().FirstOrDefault(rn => rn.Contains("." + name + "." + Extension));
             if (resourceName == null) return null;
 
             var stream = _assembly.GetManifestResourceStream(resourceName);

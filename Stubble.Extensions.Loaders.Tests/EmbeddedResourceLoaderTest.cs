@@ -16,5 +16,13 @@ namespace Stubble.Extensions.Loaders.Tests
             var result = loader.Load("EmbeddedFoo");
             Assert.Equal("I'm the Embedded {{foo}} template.", result);
         }
+
+        [Fact]
+        public void It_Should_Not_Throw_When_Resource_Doesnt_Exist()
+        {
+            var loader = new EmbeddedResourceLoader();
+            var result = loader.Load("Foo");
+            Assert.Null(result);
+        }
     }
 }

@@ -13,12 +13,14 @@ namespace Stubble.Extensions.Loaders
     {
         internal const string DefaultFileType = "mustache";
         internal readonly string Extension;
+        internal readonly string[] ResourceNames;
         private readonly Assembly _assembly;
 
         public EmbeddedResourceLoader(Assembly assembly, string extension)
         {
             _assembly = assembly;
             Extension = extension;
+            ResourceNames = _assembly.GetManifestResourceNames();
         }
 
         public EmbeddedResourceLoader(Assembly assembly) : this(assembly, DefaultFileType)
@@ -37,7 +39,7 @@ namespace Stubble.Extensions.Loaders
 
         public string Load(string name)
         {
-            var resourceName = _assembly.GetManifestResourceNames().FirstOrDefault(rn => rn.Contains("." + name + "." + Extension));
+            var resourceName = ResourceNames.FirstOrDefault(rn => rn.Contains("." + name + "." + Extension));
             if (resourceName == null) return null;
 
             var stream = _assembly.GetManifestResourceStream(resourceName);

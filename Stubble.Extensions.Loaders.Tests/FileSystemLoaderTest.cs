@@ -36,5 +36,14 @@ namespace Stubble.Extensions.Loaders.Tests
             var loader = new FileSystemLoader("./templates/", "must");
             Assert.Equal("I'm the {{bar}} template.", loader.Load("Bar"));
         }
+
+        [Fact]
+        public void It_Should_Load_Template_From_Cache_Second_Time()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));
+            Assert.Equal(1, loader.TemplateCache.Count);
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));
+        }
     }
 }

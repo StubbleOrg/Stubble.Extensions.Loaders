@@ -45,5 +45,12 @@ namespace Stubble.Extensions.Loaders.Tests
             Assert.Equal(1, loader.TemplateCache.Count);
             Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));
         }
+
+        [Fact]
+        public void It_Should_Skip_If_File_Doesnt_Exist()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Null(loader.Load("Foobar"));
+        }
     }
 }

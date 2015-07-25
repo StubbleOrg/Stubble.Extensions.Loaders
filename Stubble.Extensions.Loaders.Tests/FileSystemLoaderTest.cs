@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xunit;
 
 namespace Stubble.Extensions.Loaders.Tests
@@ -51,6 +47,24 @@ namespace Stubble.Extensions.Loaders.Tests
         {
             var loader = new FileSystemLoader("./templates/");
             Assert.Null(loader.Load("Foobar"));
+        }
+
+        [Fact]
+        public void It_Should_Override_On_Cache_Hit()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            var t1 = Task.Run(async () =>
+            {
+                await Task.Delay(100);
+                loader.Load("Foo");
+            });
+            var t2 = Task.Run(async () =>
+            {
+                await Task.Delay(100);
+                loader.Load("Foo");
+            });
+            Task.WaitAll(t1, t2);
+            Assert.Equal(1, loader.TemplateCache.Count);
         }
     }
 }

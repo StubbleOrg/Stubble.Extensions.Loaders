@@ -25,7 +25,7 @@ namespace Stubble.Extensions.Loaders
         {
             if (TemplateCache.ContainsKey(name)) return TemplateCache[name];
 
-            var fileName = Path + "/name." + Extension;
+            var fileName = Path + "/" + name + "." + Extension;
             if (!File.Exists(fileName)) return null;
 
             var contents = File.ReadAllText(fileName);

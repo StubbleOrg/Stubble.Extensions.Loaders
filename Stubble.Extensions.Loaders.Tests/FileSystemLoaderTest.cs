@@ -24,7 +24,7 @@ namespace Stubble.Extensions.Loaders.Tests
         }
 
         [Fact]
-        public void It_Should_Load_Template_From_FileSystem()
+        public void It_Should_Load_Template_From_FileSystem_With_Default_Extension()
         {
             var loader = new FileSystemLoader("./templates/");
             Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));

@@ -15,16 +15,20 @@ namespace Stubble.Extensions.Loaders
         internal readonly string Extension;
         private readonly Assembly _assembly;
 
-        public EmbeddedResourceLoader()
+        public EmbeddedResourceLoader(Assembly assembly, string extension)
         {
-            _assembly = Assembly.GetCallingAssembly();
-            Extension = DefaultFileType;
+            _assembly = assembly;
+            Extension = extension;
+        }
+
+        public EmbeddedResourceLoader()
+            : this(Assembly.GetCallingAssembly(), DefaultFileType)
+        {
         }
 
         public EmbeddedResourceLoader(string extension)
+            : this(Assembly.GetCallingAssembly(), extension)
         {
-            _assembly = Assembly.GetCallingAssembly();
-            Extension = extension;
         }
 
         public string Load(string name)
@@ -33,7 +37,6 @@ namespace Stubble.Extensions.Loaders
             if (resourceName == null) return null;
 
             var stream = _assembly.GetManifestResourceStream(resourceName);
-            if (stream == null) return null;
             using (var streamReader = new StreamReader(stream, Encoding.UTF8))
             {
                 return streamReader.ReadToEnd();

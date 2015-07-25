@@ -50,17 +50,17 @@ namespace Stubble.Extensions.Loaders.Tests
         }
 
         [Fact]
-        public void It_Should_Override_On_Cache_Hit()
+        public void It_Should_Override_On_Cache_Collision()
         {
             var loader = new FileSystemLoader("./templates/");
             var t1 = Task.Run(async () =>
             {
-                await Task.Delay(100);
+                await Task.Delay(500);
                 loader.Load("Foo");
             });
             var t2 = Task.Run(async () =>
             {
-                await Task.Delay(100);
+                await Task.Delay(500);
                 loader.Load("Foo");
             });
             Task.WaitAll(t1, t2);

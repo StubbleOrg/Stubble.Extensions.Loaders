@@ -60,18 +60,12 @@ namespace Stubble.Extensions.Loaders.Tests
         public void It_Should_Override_On_Cache_Collision()
         {
             var loader = new FileSystemLoader("./templates/");
-            var t1 = Task.Run(async () =>
-            {
-                await Task.Delay(500);
-                loader.Load("Foo");
-            });
-            var t2 = Task.Run(async () =>
-            {
-                await Task.Delay(500);
-                loader.Load("Foo");
-            });
-            Task.WaitAll(t1, t2);
+
+            loader.AddToTemplateCache("Foo", "TemplateData!");
+            loader.AddToTemplateCache("Foo", "NewTemplateData!");
+
             Assert.Equal(1, loader.TemplateCache.Count);
+            Assert.Equal("NewTemplateData!", loader.TemplateCache["Foo"]);
         }
     }
 }

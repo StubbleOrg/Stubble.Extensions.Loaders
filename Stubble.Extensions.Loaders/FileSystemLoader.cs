@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Specialized;
 using System.IO;
 using Stubble.Core.Interfaces;
 
@@ -27,10 +28,14 @@ namespace Stubble.Extensions.Loaders
 
             var fileName = Path + "/" + name + "." + Extension;
             if (!File.Exists(fileName)) return null;
-
             var contents = File.ReadAllText(fileName);
-            TemplateCache.AddOrUpdate(name, contents, (s, s1) => contents);
+            AddToTemplateCache(name, contents);
             return contents;
+        }
+
+        internal void AddToTemplateCache(string name, string contents)
+        {
+            TemplateCache.AddOrUpdate(name, contents, (s, s1) => contents);
         }
     }
 }

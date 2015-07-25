@@ -58,10 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayLoaderTest.cs" />
+    <Compile Include="EmbeddedResourceLoaderTest.cs" />
     <Compile Include="FileSystemLoaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EmbeddedFoo.mustache" />
     <None Include="packages.config" />
     <Content Include="templates\Foo.mustache">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -66,6 +66,9 @@
     <Content Include="templates\Foo.mustache">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\Bar.must">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stubble.Extensions.Loaders\Stubble.Extensions.Loaders.csproj">

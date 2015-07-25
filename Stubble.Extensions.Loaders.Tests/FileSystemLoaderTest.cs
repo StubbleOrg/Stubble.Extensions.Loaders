@@ -22,5 +22,12 @@ namespace Stubble.Extensions.Loaders.Tests
             var loader = new FileSystemLoader("./templates/");
             Assert.Equal("./templates", loader.Path);
         }
+
+        [Fact]
+        public void It_Should_Load_Template_From_FileSystem()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));
+        }
     }
 }

@@ -21,6 +21,10 @@ namespace Stubble.Extensions.Loaders
             Extension = extension;
         }
 
+        public EmbeddedResourceLoader(Assembly assembly) : this(assembly, DefaultFileType)
+        {
+        }
+
         public EmbeddedResourceLoader()
             : this(Assembly.GetCallingAssembly(), DefaultFileType)
         {

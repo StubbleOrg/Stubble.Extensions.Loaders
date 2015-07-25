@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
 namespace Stubble.Extensions.Loaders.Tests
 {
@@ -39,6 +34,17 @@ namespace Stubble.Extensions.Loaders.Tests
             var loader = new EmbeddedResourceLoader("must");
             var result = loader.Load("EmbeddedBar");
             Assert.Equal("I'm the Embedded {{bar}} template.", result);
+        }
+
+        [Fact]
+        public void It_Should_Allow_Assembly_To_Be_Passed()
+        {
+            var loader = new EmbeddedResourceLoader(GetType().Assembly);
+            var result = loader.Load("EmbeddedBar");
+            Assert.Equal("I'm the Embedded {{bar}} template.", result);
+            var loader2 = new EmbeddedResourceLoader(GetType().Assembly, "must");
+            var result2 = loader.Load("EmbeddedBar");
+            Assert.Equal("I'm the Embedded {{bar}} template.", result2);
         }
     }
 }

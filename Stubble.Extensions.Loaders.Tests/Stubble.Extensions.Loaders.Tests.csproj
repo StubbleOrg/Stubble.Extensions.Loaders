@@ -71,6 +71,8 @@
     <Content Include="templates\Bar.must">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="templates\EmbeddedBar.mustache" />
+    <EmbeddedResource Include="templates\EmbeddedBar.must" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stubble.Extensions.Loaders\Stubble.Extensions.Loaders.csproj">

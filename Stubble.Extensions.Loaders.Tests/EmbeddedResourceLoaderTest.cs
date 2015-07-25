@@ -24,5 +24,21 @@ namespace Stubble.Extensions.Loaders.Tests
             var result = loader.Load("Foo");
             Assert.Null(result);
         }
+
+        [Fact]
+        public void It_Should_Work_With_Templates_In_Folders()
+        {
+            var loader = new EmbeddedResourceLoader();
+            var result = loader.Load("EmbeddedBar");
+            Assert.Equal("I'm the Embedded {{bar}} template.", result);
+        }
+
+        [Fact]
+        public void It_Should_Work_With_Different_Extensions()
+        {
+            var loader = new EmbeddedResourceLoader("must");
+            var result = loader.Load("EmbeddedBar");
+            Assert.Equal("I'm the Embedded {{bar}} template.", result);
+        }
     }
 }

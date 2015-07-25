@@ -17,7 +17,7 @@ namespace Stubble.Extensions.Loaders
 
         public FileSystemLoader(string path, string extension)
         {
-            Path = path.TrimEnd('/');
+            Path = path.TrimEnd('/', '\\');
             Extension = extension;
         }
 

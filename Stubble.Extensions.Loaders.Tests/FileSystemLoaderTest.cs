@@ -20,6 +20,13 @@ namespace Stubble.Extensions.Loaders.Tests
         }
 
         [Fact]
+        public void It_Should_Should_Handle_BackSlashes()
+        {
+            var loader = new FileSystemLoader(@".\templates\");
+            Assert.Equal(@".\templates", loader.Path);
+        }
+
+        [Fact]
         public void It_Should_Load_Template_From_FileSystem_With_Default_Extension()
         {
             var loader = new FileSystemLoader("./templates/");

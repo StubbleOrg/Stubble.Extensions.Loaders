@@ -2,6 +2,8 @@
 
 [![Build status](https://img.shields.io/appveyor/ci/Romanx/stubble-extensions-loaders.svg?style=flat-square)](https://ci.appveyor.com/project/Romanx/stubble-extensions-loaders)
 [![Coverage Status](https://img.shields.io/coveralls/StubbleOrg/Stubble.Extensions.Loaders.svg?style=flat-square)](https://coveralls.io/r/StubbleOrg/Stubble.Extensions.Loaders)
+[![Prerelease Nuget](https://img.shields.io/nuget/vpre/Stubble.Extensions.Loaders.svg?style=flat-square&label=nuget%20pre)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
+[![Stable Nuget](https://img.shields.io/nuget/v/Stubble.Extensions.Loaders.svg?style=flat-square)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
 
 The loaders provided in this repository extend Stubble's very basic template loading features with some that cover common scenarios.
 

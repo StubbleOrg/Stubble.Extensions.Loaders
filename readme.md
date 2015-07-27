@@ -1,10 +1,10 @@
 # Stubble Extensions - Template Loaders
-The loaders provided in this repository extend Stubble's very basic template loading features with some loaders that cover some common scenarios.
+The loaders provided in this repository extend Stubble's very basic template loading features with some that cover common scenarios.
 
-All of the loaders implement the IStubbleLoader interface and so can be composited together in a cascading manner using the CompositeLoader provided by default with Stubble.
+All of the loaders implement the IStubbleLoader interface and so can be composited together in a cascading manner using the CompositeLoader provided by default with Stubble but can also be used standalone.
 
 ## Array Loader
-The array loader is the most basic, on instantiation you provide a dictionary of templates which can be looked up. The most basic usage is:
+The array loader is the most basic of the set, on instantiation you provide a dictionary of templates which are looked up on load. The most basic usage is:
 
 ```csharp
 var templates = new Dictionary<string, string> {

@@ -46,6 +46,7 @@ test_script:
     iex $coverallsExe;
 artifacts:
 - path: Stubble\bin\$(Configuration)\Stubble.Extensions.Loaders.dll
+- path: .\coverage.xml
 deploy:
 - provider: NuGet
   api_key:

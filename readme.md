@@ -1,4 +1,8 @@
 # Stubble Extensions - Template Loaders
+
+[![Build status](https://img.shields.io/appveyor/ci/Romanx/stubble-extensions-loaders.svg?style=flat-square)](https://ci.appveyor.com/project/Romanx/stubble-extensions-loaders)
+[![Coverage Status](https://img.shields.io/coveralls/StubbleOrg/Stubble.Extensions.Loaders.svg?style=flat-square)](https://coveralls.io/r/StubbleOrg/Stubble.Extensions.Loaders)
+
 The loaders provided in this repository extend Stubble's very basic template loading features with some that cover common scenarios.
 
 All of the loaders implement the IStubbleLoader interface and so can be composited together in a cascading manner using the CompositeLoader provided by default with Stubble but can also be used standalone.

@@ -67,5 +67,26 @@ namespace Stubble.Extensions.Loaders.Tests
             Assert.Equal(1, loader.TemplateCache.Count);
             Assert.Equal("NewTemplateData!", loader.TemplateCache["Foo"]);
         }
+
+        [Fact]
+        public void It_Should_Load_Template_Nested_Paths_Using_Default_Delimiter()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("level1:Foo2"));
+        }
+
+        [Fact]
+        public void It_Should_Load_Template_Nested_Paths_Using_Set_Delimiter()
+        {
+            var loader = new FileSystemLoader("./templates/", '|');
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("level1|Foo2"));
+        }
+
+        [Fact]
+        public void It_Should_Skip_If_First_Level_Doesnt_Exist()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Null(loader.Load("level2:Foobar"));
+        }
     }
 }

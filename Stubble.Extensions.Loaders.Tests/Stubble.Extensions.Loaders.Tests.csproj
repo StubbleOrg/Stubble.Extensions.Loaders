@@ -78,6 +78,9 @@
     </Content>
     <EmbeddedResource Include="templates\EmbeddedBar.mustache" />
     <EmbeddedResource Include="templates\EmbeddedBar.must" />
+    <Content Include="templates\level1\Foo2.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stubble.Extensions.Loaders\Stubble.Extensions.Loaders.csproj">

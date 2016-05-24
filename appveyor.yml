@@ -40,6 +40,8 @@ test_script:
     iex $openCoverExe;
     Write-Host "Running Coveralls";
     iex $coverallsExe;
+
+    Pop-Location;
 artifacts:
 - path: .\out\*.nupkg
 - path: .\test\Stubble.Extensions.Loaders.Tests\coverage.xml

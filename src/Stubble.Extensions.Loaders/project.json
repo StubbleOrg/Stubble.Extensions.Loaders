@@ -1,0 +1,35 @@
+{
+    "version": "1.0.0-*",
+    "title": "Stubble.Extensions.Loaders",
+    "authors": [ "Alex McAuliffe" ],
+    "description": "Template Loaders for Stubble",
+    "copyright": "Copyright © 2015",
+    "packOptions": {
+        "owners": [ "Alex McAuliffe" ],
+        "licenseUrl": "https://github.com/StubbleOrg/Stubble.Extensions.Loaders/blob/master/licence.md",
+        "repository": {
+            "type": "git",
+            "url": "https://github.com/StubbleOrg/Stubble.Extensions.Loaders"
+        },
+        "tags": [
+            "template",
+            "mustache",
+            "text",
+            "generation",
+            "fast",
+            "extension",
+            "loaders"
+        ]
+    },
+    "dependencies": {
+        "Stubble.Core": "1.0.0-alpha14"
+    },
+    "frameworks": {
+        "net45": { },
+        "netstandard1.3": {
+            "dependencies": {
+                "System.IO.FileSystem": "4.0.1-rc2-24027"
+            }
+        }
+    }
+}

@@ -27,16 +27,6 @@ namespace Stubble.Extensions.Loaders
         {
         }
 
-        public EmbeddedResourceLoader()
-            : this(Assembly.GetCallingAssembly(), DefaultFileType)
-        {
-        }
-
-        public EmbeddedResourceLoader(string extension)
-            : this(Assembly.GetCallingAssembly(), extension)
-        {
-        }
-
         public string Load(string name)
         {
             var resourceName = ResourceNames.FirstOrDefault(rn => rn.Contains("." + name + "." + Extension));

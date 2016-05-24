@@ -20,6 +20,11 @@
             "EmbeddedFoo.mustache",
             "templates/EmbeddedBar.must",
             "templates/EmbeddedBar.mustache"
+        ],
+        "copyToOutput": [
+            "templates/level1/*",
+            "templates/Bar.must",
+            "templates/Foo.mustache"
         ]
     },
     "testRunner": "xunit",

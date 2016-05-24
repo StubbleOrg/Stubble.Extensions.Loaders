@@ -34,7 +34,7 @@ test_script:
 
     Push-Location .\test\Stubble.Extensions.Loaders.Tests\
 
-    $openCoverExe = "$OpenCover_Location\OpenCover.Console.exe -register:user -target:""dotnet.exe"" ""-targetargs:test .\test\Stubble.Extensions.Loaders.Tests --framework netcoreapp1.0 -appveyor"" -filter:""+[Stubble.*]*"" -skipautoprops -output:"..\..\coverage.xml"";
+    $openCoverExe = "$OpenCover_Location\OpenCover.Console.exe -register:user -target:""dotnet.exe"" ""-targetargs:test .\test\Stubble.Extensions.Loaders.Tests --framework netcoreapp1.0 -appveyor"" -filter:""+[Stubble.*]*"" -skipautoprops -output:coverage.xml";
     $coverallsExe = "$CoverallsNet_Location\csmacnz.Coveralls.exe --opencover -i coverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage ""$env:APPVEYOR_REPO_COMMIT_MESSAGE"" --jobId $env:APPVEYOR_JOB_ID";
 
     iex $openCoverExe;
@@ -42,7 +42,7 @@ test_script:
     iex $coverallsExe;
 artifacts:
 - path: .\out\*.nupkg
-- path: .\coverage.xml
+- path: .\test\Stubble.Extensions.Loaders.Tests\coverage.xml
 deploy:
 - provider: NuGet
   api_key:

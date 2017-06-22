@@ -23,8 +23,13 @@
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
 
+    <PropertyGroup>
+        <DebugType>portable</DebugType>
+        <DebugSymbols>True</DebugSymbols>
+    </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Stubble.Core" Version="1.0.0-alpha14" />
+    <PackageReference Include="Stubble.Core" Version="1.0.27-alpha16" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
@@ -33,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="System.IO.FileSystem" Version="4.0.1" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

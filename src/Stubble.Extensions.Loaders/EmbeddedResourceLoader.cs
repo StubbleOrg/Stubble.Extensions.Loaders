@@ -38,5 +38,19 @@ namespace Stubble.Extensions.Loaders
                 return streamReader.ReadToEnd();
             }
         }
+
+        public async ValueTask<string> LoadAsync(string name)
+        {
+            var resourceName = ResourceNames.FirstOrDefault(rn => rn.Contains("." + name + "." + Extension));
+            if (resourceName == null) return null;
+
+            var stream = _assembly.GetManifestResourceStream(resourceName);
+            using (var streamReader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return await streamReader.ReadToEndAsync();
+            }
+        }
+
+        public IStubbleLoader Clone() => new EmbeddedResourceLoader(_assembly, Extension);
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Stubble.Core.Interfaces;
+using System.Text;
 
 namespace Stubble.Extensions.Loaders
 {
@@ -10,6 +11,7 @@ namespace Stubble.Extensions.Loaders
     {
         internal const string DefaultFileType = "mustache";
         internal const char DefaultDelimiter = ':';
+        internal static char DirectorySeparatorChar = System.IO.Path.DirectorySeparatorChar;
         internal readonly string Path;
         internal readonly string Extension;
         internal readonly char Delimiter;
@@ -34,29 +36,54 @@ namespace Stubble.Extensions.Loaders
             Delimiter = delimiter;
         }
 
+        public IStubbleLoader Clone() => new FileSystemLoader(Path, Delimiter, Extension);
+
         public string Load(string name)
         {
             if (TemplateCache.ContainsKey(name)) return TemplateCache[name];
-            var split = name.Split(Delimiter).Select(s => s.Trim()).ToArray();
-            var route = $"{Path}";
-            while (split.Length > 1)
-            {
-                if (Directory.Exists($@"{Path}\{split[0]}"))
-                {
-                    route += $@"\{split[0]}";
-                    split = split.Skip(1).ToArray();
-                }
-                else
-                {
-                    return null;
-                }
-            }
 
-            var fileName = route + "/" + split.First() + "." + Extension;
+            var fileName = BuildFilePath(name);
+
             if (!File.Exists(fileName)) return null;
+
             var contents = File.ReadAllText(fileName);
+
             AddToTemplateCache(name, contents);
             return contents;
+        }
+
+        public async ValueTask<string> LoadAsync(string name)
+        {
+            if (TemplateCache.ContainsKey(name)) return TemplateCache[name];
+
+            var fileName = BuildFilePath(name);
+            if (!File.Exists(fileName)) return null;
+
+            var contents = await LoadFileAsync(fileName);
+
+            return contents;
+
+            async Task<string> LoadFileAsync(string filePath) {
+                using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
+                using (var reader = new StreamReader(file, Encoding.UTF8, detectEncodingFromByteOrderMarks: false, bufferSize: 4096, leaveOpen: true))
+                {
+                    return await reader.ReadToEndAsync();
+                }
+            }
+        }
+
+        internal string BuildFilePath(string name)
+        {
+            var filePath = name;
+
+            if (!(Delimiter == DirectorySeparatorChar))
+            {
+                var split = name.Split(Delimiter).Select(s => s.Trim()).ToArray();
+
+                filePath = string.Join(DirectorySeparatorChar.ToString(), split);
+            }
+
+            return System.IO.Path.Combine(Path, filePath + "." + Extension);
         }
 
         internal void AddToTemplateCache(string name, string contents)

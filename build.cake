@@ -91,7 +91,7 @@ Task("Test")
             testAction,
             new FilePath(string.Format("./coverage-results/results.xml", DateTime.UtcNow)),
             new OpenCoverSettings {
-                Register = "path32",
+                Register = "path64",
                 SkipAutoProps = true,
                 OldStyle = true,
                 ToolPath = path,

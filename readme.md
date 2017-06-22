@@ -1,6 +1,7 @@
 # Stubble Extensions - Template Loaders
 
 [![Build status](https://img.shields.io/appveyor/ci/Romanx/stubble-extensions-loaders.svg?style=flat-square)](https://ci.appveyor.com/project/Romanx/stubble-extensions-loaders)
+[![Build Status](https://travis-ci.org/StubbleOrg/Stubble.Extensions.Loaders.svg?branch=master)](https://travis-ci.org/StubbleOrg/Stubble.Extensions.Loaders)
 [![Coverage Status](https://img.shields.io/coveralls/StubbleOrg/Stubble.Extensions.Loaders.svg?style=flat-square)](https://coveralls.io/r/StubbleOrg/Stubble.Extensions.Loaders)
 [![Prerelease Nuget](https://img.shields.io/nuget/vpre/Stubble.Extensions.Loaders.svg?style=flat-square&label=nuget%20pre)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
 [![Stable Nuget](https://img.shields.io/nuget/v/Stubble.Extensions.Loaders.svg?style=flat-square)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
@@ -30,6 +31,10 @@ The file extension can also be passed into the constructor but by default is `.m
 var loader = new FileSystemLoader("./templates")
 var secondLoader = new FileSystemLoader("./templates", "mst")
 ```
+
+Different levels by default are delimited by colons `:` however this can be changed to any delimiter.
+These are replaced when looking up the file by the default platform delimiter.
+This is `/` on windows and `\` on UNIX.
 
 Since reading from the file system can be a slow process the loaded file is cached in the loader so to avoid disk reads.
 

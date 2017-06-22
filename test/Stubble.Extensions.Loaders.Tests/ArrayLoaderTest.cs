@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Stubble.Extensions.Loaders.Tests
@@ -42,6 +43,35 @@ namespace Stubble.Extensions.Loaders.Tests
 
             Assert.Equal("I'm {{Foo}}", loader.Load("Foo"));
             Assert.Null(loader.Load("Foo2"));
+        }
+
+        [Fact]
+        public async Task It_Should_Load_Items_From_Template_If_Exists_Async()
+        {
+            var loader = new ArrayLoader(new Dictionary<string, string>
+            {
+                { "Foo", "I'm {{Foo}}" },
+                { "Bar", "I'm {{Bar}}" }
+            });
+
+            Assert.Equal("I'm {{Foo}}", await loader.LoadAsync("Foo"));
+            Assert.Null(await loader.LoadAsync("Foo2"));
+        }
+
+        [Fact]
+        public void It_Should_Allow_Cloning()
+        {
+            var loader = new ArrayLoader(new Dictionary<string, string>
+            {
+                { "Foo", "I'm {{Foo}}" },
+                { "Bar", "I'm {{Bar}}" }
+            });
+
+            var cloned = loader.Clone();
+
+            Assert.NotEqual(loader, cloned);
+            Assert.Equal("I'm {{Foo}}", loader.Load("Foo"));
+            Assert.Equal("I'm {{Foo}}", cloned.Load("Foo"));
         }
     }
 }

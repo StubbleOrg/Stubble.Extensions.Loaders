@@ -76,6 +76,13 @@ namespace Stubble.Extensions.Loaders.Tests
         }
 
         [Fact]
+        public async Task It_Should_Load_Template_Nested_Paths_Using_Default_Delimiter_Async()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("level1:Foo2"));
+        }
+
+        [Fact]
         public void It_Should_Load_Template_Nested_Paths_Using_Set_Delimiter()
         {
             var loader = new FileSystemLoader("./templates/", '|');
@@ -83,10 +90,50 @@ namespace Stubble.Extensions.Loaders.Tests
         }
 
         [Fact]
+        public async Task It_Should_Load_Template_Nested_Paths_Using_Set_Delimiter_Async()
+        {
+            var loader = new FileSystemLoader("./templates/", '|');
+            Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("level1|Foo2"));
+        }
+
+        [Fact]
+        public void It_Should_Load_Template_Nested_Paths_Ignoring_Directory_Separator()
+        {
+            var loader = new FileSystemLoader("./templates/", '/');
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("level1/Foo2"));
+        }
+
+        [Fact]
+        public async Task It_Should_Load_Template_Nested_Paths_Ignoring_Directory_Separator_Async()
+        {
+            var loader = new FileSystemLoader("./templates/", '/');
+            Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("level1/Foo2"));
+        }
+
+        [Fact]
+        public async Task It_Should_Skip_If_File_Doesnt_Exist_Async()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Null(await loader.LoadAsync("Foobar"));
+        }
+
+        [Fact]
         public void It_Should_Skip_If_First_Level_Doesnt_Exist()
         {
             var loader = new FileSystemLoader("./templates/");
             Assert.Null(loader.Load("level2:Foobar"));
+        }
+
+        [Fact]
+        public void It_Should_Allow_Cloning()
+        {
+            var loader = new FileSystemLoader("./templates/", '/');
+
+            var cloned = loader.Clone();
+
+            Assert.NotEqual(loader, cloned);
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("level1/Foo2"));
+            Assert.Equal("I'm the {{foo}} template.", cloned.Load("level1/Foo2"));
         }
     }
 }

@@ -97,8 +97,7 @@ Task("Test")
                 ToolPath = path,
                 ReturnTargetCodeOffset = 0
             }
-            .WithFilter("-[Stubble.Extensions.Loaders.Tests]*")
-            .WithFilter("+[Stubble.*]*")
+            .WithFilter("+[Stubble.Extensions.Loaders]*")
         );
 
         if (AppVeyor.IsRunningOnAppVeyor)

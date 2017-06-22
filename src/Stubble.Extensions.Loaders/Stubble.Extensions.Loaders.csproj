@@ -12,24 +12,15 @@
     <PackageLicenseUrl>https://github.com/StubbleOrg/Stubble.Extensions.Loaders/blob/master/licence.md</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StubbleOrg/Stubble.Extensions.Loaders</RepositoryUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <Company>Alex McAuliffe</Company>
+    <Authors>Alex McAuliffe</Authors>
+    <Copyright>Copyright © 2017</Copyright>
+    <PackageTags>template mustache text generation fast extension loaders</PackageTags>
   </PropertyGroup>
-
-    <PropertyGroup>
-        <DebugType>portable</DebugType>
-        <DebugSymbols>True</DebugSymbols>
-    </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Stubble.Core" Version="1.0.27-alpha16" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="1.6.35" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">

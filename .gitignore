@@ -198,3 +198,6 @@ FakesAssemblies/
 
 #DotNetCore
 project.lock.json
+tools/*
+coverage-results/*
+coverage-report/*

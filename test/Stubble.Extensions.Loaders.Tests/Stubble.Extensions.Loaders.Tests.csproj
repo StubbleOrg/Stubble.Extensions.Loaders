@@ -5,8 +5,6 @@
     <AssemblyName>Stubble.Extensions.Loaders.Tests</AssemblyName>
     <PackageId>Stubble.Extensions.Loaders.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50;portable-net45+win8</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -18,20 +16,11 @@
     <Platform>Any CPU</Platform>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <DebugType>portable</DebugType>
-    <DebugSymbols>True</DebugSymbols>
-  </PropertyGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedFoo.mustache;templates\EmbeddedBar.must;templates\EmbeddedBar.mustache" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
     <None Update="templates\level1\*;templates\Bar.must;templates\Foo.mustache">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Stubble.Extensions.Loaders\Stubble.Extensions.Loaders.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +34,10 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
       <Reference Include="System" />
       <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Stubble.Extensions.Loaders\Stubble.Extensions.Loaders.csproj" />
   </ItemGroup>
 
   <ItemGroup>

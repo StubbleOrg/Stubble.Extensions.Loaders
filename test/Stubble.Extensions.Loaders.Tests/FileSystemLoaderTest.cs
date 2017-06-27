@@ -50,6 +50,15 @@ namespace Stubble.Extensions.Loaders.Tests
         }
 
         [Fact]
+        public async Task It_Should_Load_Template_From_Cache_Second_Time_Async()
+        {
+            var loader = new FileSystemLoader("./templates/");
+            Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("Foo"));
+            Assert.Equal(1, loader.TemplateCache.Count);
+            Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("Foo"));
+        }
+
+        [Fact]
         public void It_Should_Skip_If_File_Doesnt_Exist()
         {
             var loader = new FileSystemLoader("./templates/");

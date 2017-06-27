@@ -61,6 +61,7 @@ namespace Stubble.Extensions.Loaders
 
             var contents = await LoadFileAsync(fileName);
 
+            AddToTemplateCache(name, contents);
             return contents;
 
             async Task<string> LoadFileAsync(string filePath) {

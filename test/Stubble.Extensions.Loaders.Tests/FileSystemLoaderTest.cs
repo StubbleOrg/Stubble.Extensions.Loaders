@@ -9,21 +9,21 @@ namespace Stubble.Extensions.Loaders.Tests
         public void It_Should_Take_Path_As_Argument()
         {
             var loader  = new FileSystemLoader("./templates");
-            Assert.Equal("./templates", loader.Path);
+            Assert.Equal("./templates", loader.BasePath);
         }
 
         [Fact]
         public void It_Should_Strip_Possible_Ending_Slash_On_Path()
         {
             var loader = new FileSystemLoader("./templates/");
-            Assert.Equal("./templates", loader.Path);
+            Assert.Equal("./templates", loader.BasePath);
         }
 
         [Fact]
         public void It_Should_Should_Handle_BackSlashes()
         {
             var loader = new FileSystemLoader(@".\templates\");
-            Assert.Equal(@".\templates", loader.Path);
+            Assert.Equal(@".\templates", loader.BasePath);
         }
 
         [Fact]
@@ -130,7 +130,21 @@ namespace Stubble.Extensions.Loaders.Tests
         public void It_Should_Skip_If_First_Level_Doesnt_Exist()
         {
             var loader = new FileSystemLoader("./templates/");
-            Assert.Null(loader.Load("level2:Foobar"));
+            Assert.Null(loader.Load("Foobar"));
+        }
+
+        [Fact]
+        public async Task It_Should_Ignore_Extension_If_Not_Passed_Async()
+        {
+            var loader = new FileSystemLoader("./templates/", "");
+            Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("level1:Foo2.mustache"));
+        }
+
+        [Fact]
+        public void It_Should_Ignore_Extension_If_Not_Passed()
+        {
+            var loader = new FileSystemLoader("./templates/", "");
+            Assert.Equal("I'm the {{foo}} template.", loader.Load("level1:Foo2.mustache"));
         }
 
         [Fact]

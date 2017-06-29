@@ -12,7 +12,7 @@ namespace Stubble.Extensions.Loaders
         internal const string DefaultFileType = "mustache";
         internal const char DefaultDelimiter = ':';
         internal static char DirectorySeparatorChar = System.IO.Path.DirectorySeparatorChar;
-        internal readonly string Path;
+        internal readonly string BasePath;
         internal readonly string Extension;
         internal readonly char Delimiter;
         internal ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
@@ -31,12 +31,12 @@ namespace Stubble.Extensions.Loaders
 
         public FileSystemLoader(string path, char delimiter, string extension)
         {
-            Path = path.TrimEnd('/', '\\');
+            BasePath = path.TrimEnd('/', '\\');
             Extension = extension;
             Delimiter = delimiter;
         }
 
-        public IStubbleLoader Clone() => new FileSystemLoader(Path, Delimiter, Extension);
+        public IStubbleLoader Clone() => new FileSystemLoader(BasePath, Delimiter, Extension);
 
         public string Load(string name)
         {
@@ -84,7 +84,9 @@ namespace Stubble.Extensions.Loaders
                 filePath = string.Join(DirectorySeparatorChar.ToString(), split);
             }
 
-            return System.IO.Path.Combine(Path, filePath + "." + Extension);
+            return string.IsNullOrEmpty(Extension)
+                ? Path.Combine(BasePath, filePath)
+                : Path.Combine(BasePath, filePath + "." + Extension);
         }
 
         internal void AddToTemplateCache(string name, string contents)

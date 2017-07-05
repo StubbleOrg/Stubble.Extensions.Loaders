@@ -10,7 +10,7 @@
     <PackageId>Stubble.Extensions.Loaders</PackageId>
     <PackageTags>template;mustache;text;generation;fast;extension;loaders</PackageTags>
     <PackageLicenseUrl>https://github.com/StubbleOrg/Stubble.Extensions.Loaders/blob/master/licence.md</PackageLicenseUrl>
-    <IconUrl>https://raw.githubusercontent.com/StubbleOrg/Stubble/dev/assets/extension-logo-64.png</IconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/StubbleOrg/Stubble/dev/assets/extension-logo-64.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StubbleOrg/Stubble.Extensions.Loaders</RepositoryUrl>
     <Company>Alex McAuliffe</Company>

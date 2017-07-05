@@ -1,10 +1,6 @@
-# Stubble Extensions - Template Loaders
+# Stubble Extensions - Template Loaders [![Build status](https://img.shields.io/appveyor/ci/Romanx/stubble-extensions-loaders.svg?style=flat-square)](https://ci.appveyor.com/project/Romanx/stubble-extensions-loaders) [![Build Status](https://travis-ci.org/StubbleOrg/Stubble.Extensions.Loaders.svg?branch=master)](https://travis-ci.org/StubbleOrg/Stubble.Extensions.Loaders) [![Coverage Status](https://img.shields.io/coveralls/StubbleOrg/Stubble.Extensions.Loaders.svg?style=flat-square)](https://coveralls.io/r/StubbleOrg/Stubble.Extensions.Loaders) [![Prerelease Nuget](https://img.shields.io/nuget/vpre/Stubble.Extensions.Loaders.svg?style=flat-square&label=nuget%20pre)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/) [![Stable Nuget](https://img.shields.io/nuget/v/Stubble.Extensions.Loaders.svg?style=flat-square)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
 
-[![Build status](https://img.shields.io/appveyor/ci/Romanx/stubble-extensions-loaders.svg?style=flat-square)](https://ci.appveyor.com/project/Romanx/stubble-extensions-loaders)
-[![Build Status](https://travis-ci.org/StubbleOrg/Stubble.Extensions.Loaders.svg?branch=master)](https://travis-ci.org/StubbleOrg/Stubble.Extensions.Loaders)
-[![Coverage Status](https://img.shields.io/coveralls/StubbleOrg/Stubble.Extensions.Loaders.svg?style=flat-square)](https://coveralls.io/r/StubbleOrg/Stubble.Extensions.Loaders)
-[![Prerelease Nuget](https://img.shields.io/nuget/vpre/Stubble.Extensions.Loaders.svg?style=flat-square&label=nuget%20pre)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
-[![Stable Nuget](https://img.shields.io/nuget/v/Stubble.Extensions.Loaders.svg?style=flat-square)](https://www.nuget.org/packages/Stubble.Extensions.Loaders/)
+<img align="right" width="160px" height="160px" src="https://raw.githubusercontent.com/StubbleOrg/Stubble/dev/assets/extension-logo-256.png">
 
 The loaders provided in this repository extend Stubble's very basic template loading features with some that cover common scenarios.
 
@@ -47,3 +43,7 @@ Since the resources are embedded inside a DLL they have to be loaded from an Ass
 var loaderWithAssembly = new EmbeddedResourceLoader(Assembly.Load("AssemblyName"))
 var loaderWithAssemblyAndExtension = new EmbeddedResourceLoader(Assembly.Load("AssemblyName"), "mst")
 ```
+
+## Credits
+
+Straight Razor by Vectors Market from the Noun Project

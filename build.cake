@@ -89,7 +89,7 @@ Task("Test")
 
         if (AppVeyor.IsRunningOnAppVeyor)
         {
-            foreach(var file in GetFiles("./test/Stubble.Core.Tests/TestResults/*"))
+            foreach(var file in GetFiles("./test/Stubble.Extensions.Loaders.Tests/TestResults/*"))
             {
                 AppVeyor.UploadTestResults(file, AppVeyorTestResultsType.MSTest);
                 AppVeyor.UploadArtifact(file);

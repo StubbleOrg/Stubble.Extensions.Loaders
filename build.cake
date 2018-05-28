@@ -169,7 +169,7 @@ Task("AppVeyor")
     .IsDependentOn("CodeCov");
 
 Task("Travis")
-    .IsDependentOn("CodeCov");
+    .IsDependentOn("Pack");
 
 Task("Default")
     .IsDependentOn("Pack");

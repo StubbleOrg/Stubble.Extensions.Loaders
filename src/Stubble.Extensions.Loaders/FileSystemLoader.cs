@@ -9,9 +9,9 @@ namespace Stubble.Extensions.Loaders
 {
     public class FileSystemLoader : IStubbleLoader
     {
-        internal const string DefaultFileType = "mustache";
-        internal const char DefaultDelimiter = ':';
-        internal static char DirectorySeparatorChar = System.IO.Path.DirectorySeparatorChar;
+        private const string DefaultFileType = "mustache";
+        private const char DefaultDelimiter = ':';
+        private static readonly char DirectorySeparatorChar = Path.DirectorySeparatorChar;
         internal readonly string BasePath;
         internal readonly string Extension;
         internal readonly char Delimiter;
@@ -40,7 +40,10 @@ namespace Stubble.Extensions.Loaders
 
         public string Load(string name)
         {
-            if (TemplateCache.ContainsKey(name)) return TemplateCache[name];
+            if (TemplateCache.ContainsKey(name))
+            {
+                return TemplateCache[name];
+            }
 
             var fileName = BuildFilePath(name);
 
@@ -54,7 +57,10 @@ namespace Stubble.Extensions.Loaders
 
         public async ValueTask<string> LoadAsync(string name)
         {
-            if (TemplateCache.ContainsKey(name)) return TemplateCache[name];
+            if (TemplateCache.ContainsKey(name))
+            {
+                return TemplateCache[name];
+            }
 
             var fileName = BuildFilePath(name);
             if (!File.Exists(fileName)) return null;
@@ -77,7 +83,7 @@ namespace Stubble.Extensions.Loaders
         {
             var filePath = name;
 
-            if (!(Delimiter == DirectorySeparatorChar))
+            if (Delimiter != DirectorySeparatorChar)
             {
                 var split = name.Split(Delimiter).Select(s => s.Trim()).ToArray();
 

@@ -45,7 +45,7 @@ namespace Stubble.Extensions.Loaders.Tests
         {
             var loader = new FileSystemLoader("./templates/");
             Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));
-            Assert.Equal(1, loader.TemplateCache.Count);
+            Assert.Single(loader.TemplateCache);
             Assert.Equal("I'm the {{foo}} template.", loader.Load("Foo"));
         }
 
@@ -54,7 +54,7 @@ namespace Stubble.Extensions.Loaders.Tests
         {
             var loader = new FileSystemLoader("./templates/");
             Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("Foo"));
-            Assert.Equal(1, loader.TemplateCache.Count);
+            Assert.Single(loader.TemplateCache);
             Assert.Equal("I'm the {{foo}} template.", await loader.LoadAsync("Foo"));
         }
 
@@ -73,7 +73,7 @@ namespace Stubble.Extensions.Loaders.Tests
             loader.AddToTemplateCache("Foo", "TemplateData!");
             loader.AddToTemplateCache("Foo", "NewTemplateData!");
 
-            Assert.Equal(1, loader.TemplateCache.Count);
+            Assert.Single(loader.TemplateCache);
             Assert.Equal("NewTemplateData!", loader.TemplateCache["Foo"]);
         }
 

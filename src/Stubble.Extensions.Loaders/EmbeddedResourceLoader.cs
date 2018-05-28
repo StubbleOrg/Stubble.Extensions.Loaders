@@ -11,20 +11,16 @@ namespace Stubble.Extensions.Loaders
 {
     public class EmbeddedResourceLoader : IStubbleLoader
     {
-        internal const string DefaultFileType = "mustache";
-        internal readonly string Extension;
-        internal readonly string[] ResourceNames;
+        private const string DefaultFileType = "mustache";
+        private readonly string Extension;
+        private readonly string[] ResourceNames;
         private readonly Assembly _assembly;
 
-        public EmbeddedResourceLoader(Assembly assembly, string extension)
+        public EmbeddedResourceLoader(Assembly assembly, string extension = DefaultFileType)
         {
             _assembly = assembly;
             Extension = extension;
             ResourceNames = _assembly.GetManifestResourceNames();
-        }
-
-        public EmbeddedResourceLoader(Assembly assembly) : this(assembly, DefaultFileType)
-        {
         }
 
         public string Load(string name)

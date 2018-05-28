@@ -5,6 +5,8 @@ platform: Any CPU
 environment:
   COVERALLS_REPO_TOKEN:
     secure: 4GEc9+zwnC3QqpeTKzuVgzODZWveBtiB3j9X1fe+H8IWeRyEtG47BKAV0j6ne69p
+  CODECOV_REPO_TOKEN:
+    secure: Bh0IR5gAAePAQsaMKjQ4NeLUbAjfDzg8dr4vJDqgyVZcNGXlI2fQUUjcnBoRX8du
 install:
 - ps: >-
     dotnet --info

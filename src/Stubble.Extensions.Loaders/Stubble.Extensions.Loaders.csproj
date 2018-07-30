@@ -5,7 +5,7 @@
     <Copyright>Copyright � 2015</Copyright>
     <AssemblyTitle>Stubble.Extensions.Loaders</AssemblyTitle>
     <Authors>Alex McAuliffe</Authors>
-    <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <AssemblyName>Stubble.Extensions.Loaders</AssemblyName>
     <PackageId>Stubble.Extensions.Loaders</PackageId>
     <PackageTags>template;mustache;text;generation;fast;extension;loaders</PackageTags>
@@ -27,10 +27,6 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
